@@ -7,22 +7,22 @@ import { fileURLToPath } from "url";
 const app = express();
 app.use(cors());
 
-// Fix for __dirname in ES modules
+// Fix __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve static frontend files
+// Serve static files (HTML, CSS, JS, images)
 app.use(express.static(__dirname));
 
-// Your /videos endpoint
+// YouTube feed endpoint
 app.get("/videos", async (req, res) => {
   const feedUrl = "https://www.youtube.com/feeds/videos.xml?channel_id=UCt6p8pYtBXexdFvkbDE5j2A";
   const response = await fetch(feedUrl);
   const xml = await response.text();
-  res.send(xml);
+  res.type("application/xml").send(xml);
 });
 
-// Fallback: send index.html for root
+// Fallback route — ALWAYS send index.html
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
