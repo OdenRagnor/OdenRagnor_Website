@@ -1,30 +1,25 @@
 async function loadVideos() {
-  const playlistId = "UUt6p8pYtBXexdFvkbDE5j2A";
-  const apiUrl = `https://yt-api.org/json/playlist/${playlistId}`;
+  const res = await fetch("/videos");
+  const xmlText = await res.text();
 
-  const res = await fetch(apiUrl);
-  const data = await res.json();
-
+  const parser = new DOMParser();
+  const xml = parser.parseFromString(xmlText, "text/xml");
+  const entries = xml.getElementsByTagName("entry");
   const container = document.getElementById("videoCarousel");
 
-  if (!data.items || data.items.length === 0) {
-    container.innerHTML = "<p style='color:#888;'>No videos found.</p>";
-    return;
-  }
+  for (let i = 0; i < entries.length; i++) {
+    const videoId = entries[i].getElementsByTagName("yt:videoId")[0].textContent;
 
-  data.items.forEach(video => {
     const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube.com/embed/${video.id}`;
+    iframe.src = `https://www.youtube.com/embed/${videoId}`;
     iframe.loading = "lazy";
-    iframe.allowFullscreen = true;
     container.appendChild(iframe);
-  });
+  }
 }
 
 function scrollVideos(direction) {
   const container = document.getElementById("videoCarousel");
-  const scrollAmount = 350;
-  container.scrollLeft += direction * scrollAmount;
+  container.scrollLeft += direction * 350;
 }
 
 loadVideos();
