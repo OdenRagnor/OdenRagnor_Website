@@ -89,6 +89,13 @@ nav {
     padding: 10px 20px;
 }
 
+nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 nav button img {
     background: none;
     border: none;
@@ -96,5 +103,5 @@ nav button img {
     border-radius: 5px;
     height: 40px;
     width: 40px;
-    background-color: #1b1b1b00;
+    background: none;
 }
