@@ -1,20 +1,24 @@
 async function loadVideos() {
   const res = await fetch("/videos");
-  const xmlText = await res.text();
+  const data = await res.json();
 
-  const parser = new DOMParser();
-  const xml = parser.parseFromString(xmlText, "text/xml");
-  const entries = xml.getElementsByTagName("entry");
   const container = document.getElementById("videoCarousel");
 
-  for (let i = 0; i < entries.length; i++) {
-    const videoId = entries[i].getElementsByTagName("yt:videoId")[0].textContent;
+  if (!data.items) {
+    container.innerHTML = "<p>No videos found.</p>";
+    return;
+  }
+
+  data.items.forEach(item => {
+    if (!item.id.videoId) return;
 
     const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+    iframe.src = `https://www.youtube.com/embed/${item.id.videoId}`;
     iframe.loading = "lazy";
+    iframe.allowFullscreen = true;
+
     container.appendChild(iframe);
-  }
+  });
 }
 
 function scrollVideos(direction) {
