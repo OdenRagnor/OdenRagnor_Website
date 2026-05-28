@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // 2️⃣ YouTube feed endpoint
 app.get("/videos", async (req, res) => {
-  const feedUrl = "https://www.youtube.com/feeds/videos.xml?channel_id=UCt6p8pYtBXexdFvkbDE5j2A";
+  const feedUrl = "https://www.youtube.com/feeds/videos.xml?channel_id=UC9e9wn-JzoBHLLM9umyNGcw";
   const response = await fetch(feedUrl);
   const xml = await response.text();
   res.type("application/xml").send(xml);
