@@ -1,5 +1,5 @@
 async function loadVideos() {
-  const feedUrl = "https://www.youtube.com/feeds/videos.xml?channel_id=UCt6p8pYtBXexdFvkbDE5j2A";
+  const feedUrl = "https://www.youtube.com/feeds/videos.xml?channel_id=@OdenRagnor";
   const proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(feedUrl);
 
   try {
