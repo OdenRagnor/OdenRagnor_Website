@@ -83,11 +83,13 @@ h2 {
 nav {
     background-color: #2a2a2a;
     border-radius: 10px;
-    position: absolute;
-    bottom: 20px;
-    display:inline-block;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
     padding: 10px 20px;
+    margin-top: 20px;
 }
+
 
 nav a {
     background: none;
