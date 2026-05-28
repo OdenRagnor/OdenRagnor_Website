@@ -1,0 +1,81 @@
+p {
+    font-size: 22px;
+    line-height: 1.6;
+    color: #c9c7c7;
+}
+#oden-ragnor-image {
+    max-width: 200px;
+    height: auto;
+    float: right;
+    border-radius: 10px;
+    border: 2px solid #6e6767;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+body {
+    background-color: #1b1b1b;
+    padding: 20px;
+    border-radius: 10px;
+}
+body {
+    color: #c9c7c7;
+    font-family: 'Arial', sans-serif;
+}
+h2 {
+    margin-top: 30px;
+}
+
+.video-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.video-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 10px;
+}
+
+.video-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.video-carousel iframe {
+    width: 320px;
+    height: 180px;
+    border-radius: 10px;
+    border: none;
+}
+
+.scroll-btn {
+    background: black;
+    color: white;
+    border: none;
+    font-size: 30px;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 8px;
+    opacity: 0.7;
+    transition: 0.2s;
+}
+
+.scroll-btn:hover {
+    opacity: 1;
+}
+
+.scroll-btn.left {
+    margin-right: 10px;
+}
+
+.scroll-btn.right {
+    margin-left: 10px;
+}
