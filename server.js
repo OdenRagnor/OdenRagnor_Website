@@ -11,10 +11,10 @@ app.use(cors());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve static files (HTML, CSS, JS, images)
-app.use(express.static(__dirname));
+// 1️⃣ Serve static files FIRST
+app.use(express.static(path.join(__dirname, "public")));
 
-// YouTube feed endpoint
+// 2️⃣ YouTube feed endpoint
 app.get("/videos", async (req, res) => {
   const feedUrl = "https://www.youtube.com/feeds/videos.xml?channel_id=UCt6p8pYtBXexdFvkbDE5j2A";
   const response = await fetch(feedUrl);
@@ -22,9 +22,9 @@ app.get("/videos", async (req, res) => {
   res.type("application/xml").send(xml);
 });
 
-// Fallback route — ALWAYS send index.html
+// 3️⃣ Fallback route — ALWAYS send index.html
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.listen(3000, () => console.log("Server running on port 3000"));
